@@ -15,15 +15,12 @@ const plaatje = d3.select('body').append('svg')
 const group = plaatje.append('g')
     .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
-let data;
-
+let data = [1,2,3,4];
+update(data)
 const bar_height = 100;
 
 
-d3.json('https://rawgit.com/sgratzl/d3tutorial/master/examples/weather.json').then((json) => {
-    data = json;
-    update(data);
-});
+
 function update(new_data) {
 
 

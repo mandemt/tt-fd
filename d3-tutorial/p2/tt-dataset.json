@@ -57,7 +57,7 @@ let data = [
     "Wat is je favoriete datum, maar nu in tekst!": "10 juli 1999",
     "Wat is je favoriete zuivelproduct?": "Ik ben lactose intolerant, ga weg!",
     "Welke kleur kledingstukken heb je aan vandaag? (Meerdere antwoorden mogelijk natuurlijk...)": "Zwart, Wit, Grijs",
-    "verdieping": 1,
+    "verdieping": "geen",
     "Wat wil je worden als je groot bent?": "Vader",
     "Wat wilde je later worden als je groot bent, maar nu toen je zelf 8 jaar was.": "President",
     "Kaas is ook een zoogdier?": "Kan ik nog switchen naar de Visual Track?",
