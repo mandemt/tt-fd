@@ -1,4 +1,4 @@
-const margin = { top: 40, bottom: 10, left: 120, right: 20 };
+const margin = { top: 50, bottom: 50, left: 120, right: 120 };
 const width = 800 - margin.left - margin.right;
 const height = 600 - margin.top - margin.bottom;
 
@@ -55,12 +55,11 @@ update(nieuw);
 
 function update(new_data) {
 
-
-xscale.domain([0, d3.max(new_data, (d) => d.keer)]);
-yscale.domain(new_data.map((d) => d.getal));
-//render the axis
-g_xaxis.call(xaxis);
-g_yaxis.call(yaxis);
+    xscale.domain([0, d3.max(new_data, (d) => d.keer)]);
+    yscale.domain(new_data.map((d) => d.getal));
+    //render the axis
+    g_xaxis.transition().call(xaxis);
+    g_yaxis.transition().call(yaxis);
 
     const rect = g.selectAll('rect').data(new_data).join(
 
@@ -74,15 +73,30 @@ g_yaxis.call(yaxis);
 
         },
         (update) => update,
-
         (exit) =>
             exit.remove()
 
     );
-    rect
+    rect.transition()
     .attr('height', yscale.bandwidth())
     .attr('width', (d) => xscale(d.keer))
     .attr('y', (d) => yscale(d.getal));
 
   rect.select('title').text((d) => d.getal);
 }
+
+d3.select('#filter-us-only').on('change', function() {
+    // This will be triggered when the user selects or unselects the checkbox
+    const checked = d3.select(this).property('checked');
+    if (checked === true) {
+      // Checkbox was just checked
+  
+      // Keep only data element whose country is US
+      const filtered_data = nieuw.filter((d) => d.keer <= '8');
+  
+      update(filtered_data);  // Update the chart with the filtered data
+    } else {
+      // Checkbox was just unchecked
+      update(nieuw);  // Update the chart with all the data we have
+    }
+  });

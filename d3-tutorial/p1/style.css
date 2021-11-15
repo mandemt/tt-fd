@@ -1,19 +1,34 @@
 body {
   width: 800px;
-  background-color: darkslategray;
+  background-color: white;
   margin: 25px auto;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  color:lightgray;
+  color:black;
   
 }
 rect {
-  fill: blue;
-  fill-opacity: 0.5;
+  fill: green;
+  fill-opacity: .9;
 }
 
 rect:hover {
   fill-opacity: 1;
+  box-shadow: 5px 10px black;
+
 }
 .axis {
   font-size: smaller;
 }
+
+div{
+  box-shadow: 0px 10px 10px #888888;
+  padding:1em;
+
+
+}
+
+svg{
+  box-shadow: 0px 10px 10px #888888;
+
+}
+
