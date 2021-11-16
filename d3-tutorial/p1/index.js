@@ -1,8 +1,8 @@
-const margin = { top: 50, bottom: 50, left: 120, right: 120 };
-const width = 800 - margin.left - margin.right;
-const height = 600 - margin.top - margin.bottom;
+const margin = { top: 50, bottom: 50, left: 150, right: 50 };
+const width = 500 - margin.left - margin.right;
+const height = 500 - margin.top - margin.bottom;
 
-const svg = d3.select('body').append('svg')
+const svg = d3.select('main').append('svg')
     .attr('width', width + margin.left + margin.right)
     .attr('height', height + margin.top + margin.bottom);
 
@@ -18,6 +18,12 @@ count.forEach(function (x) {
     counts[x] = (counts[x] || 0) + 1;
 
 });
+// const test = Object.keys(somPerSoort).map(key => {
+
+//     return { color: key, amount: somPerSoort[key] };
+    
+//     });
+
 
 console.log(counts)
 const bar_height = 50;
@@ -51,8 +57,20 @@ const xaxis = d3.axisTop().scale(xscale);
 const g_xaxis = g.append('g').attr('class','x axis');
 const yaxis = d3.axisLeft().scale(yscale);
 const g_yaxis = g.append('g').attr('class','y axis');
-update(nieuw);
 
+
+
+svg.append("text")             
+      .attr("transform","translate(100,250)rotate(90)")
+      .style("text-anchor", "middle")
+      .text("Aantal zin in de Tech Track");
+
+svg.append("text")             
+      .attr("transform","translate(300,20)")
+      .style("text-anchor", "middle")
+      .text("Aantal keer voorgekomen in enquete");
+
+update(nieuw);
 function update(new_data) {
 
     xscale.domain([0, d3.max(new_data, (d) => d.keer)]);
@@ -80,23 +98,15 @@ function update(new_data) {
     rect.transition()
     .attr('height', yscale.bandwidth())
     .attr('width', (d) => xscale(d.keer))
-    .attr('y', (d) => yscale(d.getal));
+    .attr('y', (d) => yscale(d.getal))
+    .attr('border-radius', '10px')
 
   rect.select('title').text((d) => d.getal);
 }
 
-d3.select('#filter-us-only').on('change', function() {
-    // This will be triggered when the user selects or unselects the checkbox
-    const checked = d3.select(this).property('checked');
-    if (checked === true) {
-      // Checkbox was just checked
-  
-      // Keep only data element whose country is US
-      const filtered_data = nieuw.filter((d) => d.keer <= '8');
-  
+d3.select('input[type="range"]')
+.on('change', function() {
+    let waarde = this.value
+      const filtered_data = nieuw.filter((d) => d.getal >= waarde)
       update(filtered_data);  // Update the chart with the filtered data
-    } else {
-      // Checkbox was just unchecked
-      update(nieuw);  // Update the chart with all the data we have
-    }
   });
