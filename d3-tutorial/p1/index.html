@@ -5,8 +5,9 @@
 
 
 <h1>Bar chart tom mandemaker</h1>
-
-<div id="hallootjes">  <label id="hallo">
+<div id="hallootjes"> 
+<h3>Filter hoe vaak iets mag voorkomen:</h3>
+<label id="hallo">
 
   <p>0</p>
   <p>1</p>
@@ -20,11 +21,20 @@
   <p>9</p>
   <p>10</p>
 </label>
+
   <input type="range" min="0" max="10" value="5" >
-</div>
-<main>
+  <select name="filter" >
+    <option value="dier" selected>Hoeveel zin heb je in de techtrack?</option>
+    <option value="verdieping">Op welke verdieping studeer je het liefste?</option>
+    <option value="zuivelproduct">Wat is je favoriete zuivelproduct?</option>
+    <option value="oogkleur">Wat is je oogkleur?</option>
+  </select>
+
+
+</div>  <main>
 
 </main>
 
+
   <script type="text/javascript" src="tt-dataset.json"></script>
-<script src="index.js"></script>
+<script type="module" src="index.js"></script>
